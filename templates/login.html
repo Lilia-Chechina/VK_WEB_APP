@@ -48,6 +48,25 @@
             font-weight: bold;
             margin-right: 10px;
         }
+        .login-section {
+            margin-top: 20px;
+        }
+        .login-section .error-message {
+            color: red;
+            font-size: 0.9rem;
+        }
+        .login-section label {
+            font-weight: bold;
+        }
+        .login-section .create-account {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -68,9 +87,25 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
+    <!-- Main Content -->
     <div class="row mt-4">
-        <div class="col-md-4 sidebar">
+        <!-- Login Section -->
+        <div class="col-md-6 login-section">
+            <h2>Log in</h2>
+            <div class="error-message">Sorry, wrong password!</div>
+            <label for="login">Login</label>
+            <input type="text" id="login" class="form-control mb-2" placeholder="Enter your login here">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control mb-3" placeholder="Password">
+
+            <button class="btn btn-primary btn-block">Log in!</button>
+
+            <p class="create-account mt-3">create new account</p>
+        </div>
+
+        <!-- Sidebar Section with Margin Adjustment -->
+        <div class="col-md-5 sidebar ml-md-5">
             <h2>Popular Tags</h2>
             <div class="popular-tags">
                 <a href="https://www.perl.org/">perl</a>

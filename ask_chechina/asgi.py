@@ -1,5 +1,5 @@
 """
-ASGI config for askme_chechina project.
+ASGI config for ask_chechina project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'askme_chechina.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ask_chechina.settings')
 
 application = get_asgi_application()

@@ -1,5 +1,5 @@
 """
-URL configuration for askme_chechina project.
+URL configuration for ask_chechina project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskPupkin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .header, .sidebar {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .header .btn-ask {
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+        }
+        .header .btn-ask:hover {
+            background-color: #218838;
+        }
+        .sidebar h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            font-size: 0.9rem;
+            color: #343a40;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .popular-tags a {
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="row header align-items-center">
+        <div class="col-4">
+            <h1>AskPupkin</h1>
+        </div>
+        <div class="col-5">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-3 text-right">
+            <a href="#" class="btn btn-ask">ASK!</a>
+            <a href="#" class="ml-2">log in</a>
+            <a href="#" class="ml-2">register</a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="row mt-4">
+        <div class="col-md-4 sidebar">
+            <h2>Popular Tags</h2>
+            <div class="popular-tags">
+                <a href="https://www.perl.org/">perl</a>
+                <a href="https://www.python.org/">python</a>
+                <a href="https://technopark.ru/">TechnoPark</a>
+                <a href="https://www.mysql.com/">MySQL</a>
+                <a href="https://www.djangoproject.com/">django</a>
+                <a href="https://mail.ru/">Mail.Ru</a>
+                <a href="https://voloshin.com/">Voloshin</a>
+                <a href="https://www.mozilla.org/en-US/firefox/">Firefox</a>
+            </div>
+
+            <h2 class="mt-4">Best Members</h2>
+            <div>
+                <a href="#">Mr. Freeman</a>
+                <a href="#">Dr. House</a>
+                <a href="#">Bender</a>
+                <a href="#">Queen Victoria</a>
+                <a href="#">V. Pupkin</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

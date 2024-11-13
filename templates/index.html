@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskPupkin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for layout and styling */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .btn-ask {
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-ask:hover {
+            background-color: #218838;
+        }
+        .avatar-box {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            line-height: 40px;
+            margin-left: 10px;
+        }
+        .new-questions .question-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .vote-count {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 10px;
+            border-right: 1px solid #ccc;
+            width: 50px;
+        }
+        .vote-avatar {
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            line-height: 30px;
+            margin-bottom: 5px;
+        }
+        .vote-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8rem; /* уменьшенный размер стрелок */
+        }
+        .vote-number {
+            font-size: 0.9rem; /* уменьшенный размер для числа голосов */
+            font-weight: bold;
+            margin: 3px 0;
+        }
+        .question-content {
+            padding-left: 15px;
+        }
+        .question-content h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .question-content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .question-content .tags a {
+            color: #007bff;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+        .hot-questions-link {
+            font-size: 0.9rem;
+            text-decoration: underline;
+        }
+        .sidebar h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            font-size: 0.9rem;
+            color: #343a40;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .popular-tags a {
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="row header align-items-center">
+        <div class="col-4">
+            <h1>AskPupkin</h1>
+        </div>
+        <div class="col-5">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-3 text-right">
+            <a href="#" class="btn btn-ask">ASK!</a>
+            <div class="avatar-box">Avatar</div>
+            <span class="ml-2">Dr. Pepper</span>
+            <a href="#" class="ml-2">log in</a>
+            <a href="#" class="ml-2">register</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row mt-4">
+        <!-- New Questions Section -->
+        <div class="col-md-8 new-questions">
+            <h2>New Questions <a href="#" class="hot-questions-link ml-3">Hot Questions</a></h2>
+
+            <!-- Question Box -->
+            <div class="question-box">
+                <div class="vote-count">
+                    <div class="vote-avatar">A</div>
+                    <div class="vote-controls">
+                        <a href="#" class="text-dark">&#9650;</a>
+                        <div class="vote-number">5</div>
+                        <a href="#" class="text-dark">&#9660;</a>
+                    </div>
+                </div>
+                <div class="question-content">
+                    <h3><a href="#">How to build a moon park?</a></h3>
+                    <p>Guys, I have trouble with a moon park. Can't find th black-jack...</p>
+                    <p><a href="#">answer (3)</a> Tags: <span class="tags"><a href="#">black-jack</a> <a href="#">bender</a></span></p>
+                </div>
+            </div>
+
+            <!-- Another Question Box (duplicate for example) -->
+            <div class="question-box">
+                <div class="vote-count">
+                    <div class="vote-avatar">A</div>
+                    <div class="vote-controls">
+                        <a href="#" class="text-dark">&#9650;</a>
+                        <div class="vote-number">5</div>
+                        <a href="#" class="text-dark">&#9660;</a>
+                    </div>
+                </div>
+                <div class="question-content">
+                    <h3><a href="#">How to build a moon park?</a></h3>
+                    <p>Guys, I have trouble with a moon park. Can't find th black-jack...</p>
+                    <p><a href="#">answer (3)</a> Tags: <span class="tags"><a href="#">black-jack</a> <a href="#">bender</a></span></p>
+                </div>
+            </div>
+
+            <!-- Another Question Box (duplicate for example) -->
+            <div class="question-box">
+                <div class="vote-count">
+                    <div class="vote-avatar">A</div>
+                    <div class="vote-controls">
+                        <a href="#" class="text-dark">&#9650;</a>
+                        <div class="vote-number">5</div>
+                        <a href="#" class="text-dark">&#9660;</a>
+                    </div>
+                </div>
+                <div class="question-content">
+                    <h3><a href="#">How to build a moon park?</a></h3>
+                    <p>Guys, I have trouble with a moon park. Can't find th black-jack...</p>
+                    <p><a href="#">answer (3)</a> Tags: <span class="tags"><a href="#">black-jack</a> <a href="#">bender</a></span></p>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination mt-3">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">53</a>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 sidebar">
+            <h2>Popular Tags</h2>
+            <div class="popular-tags">
+                <a href="https://www.perl.org/">perl</a>
+                <a href="https://www.python.org/">python</a>
+                <a href="https://technopark.ru/">TechnoPark</a>
+                <a href="https://www.mysql.com/">MySQL</a>
+                <a href="https://www.djangoproject.com/">django</a>
+                <a href="https://mail.ru/">Mail.Ru</a>
+                <a href="https://voloshin.com/">Voloshin</a>
+                <a href="https://www.mozilla.org/en-US/firefox/">Firefox</a>
+            </div>
+
+            <h2 class="mt-4">Best Members</h2>
+            <div>
+                <a href="#">Mr. Freeman</a>
+                <a href="#">Dr. House</a>
+                <a href="#">Bender</a>
+                <a href="#">Queen Victoria</a>
+                <a href="#">V. Pupkin</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

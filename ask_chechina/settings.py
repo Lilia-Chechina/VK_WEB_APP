@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ask_pupkin_data',
-        'USER': 'postgres',
+        'USER': 'pearl.lilie',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',  # порт PostgreSQL

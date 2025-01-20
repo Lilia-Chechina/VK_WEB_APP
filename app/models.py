@@ -18,6 +18,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class QuestionManager(models.Manager):
+    def best_questions(self):
+        return self.order_by('-score')
+
+    def new_questions(self):
+        return self.order_by('-created')
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
@@ -36,6 +42,7 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag, related_name='questions')
     score = models.IntegerField(default=0)  # Счётчик голосов
     is_correct = models.BooleanField(default=False)
+    objects = QuestionManager()  # для лучших и новых вопросов
 
     def __str__(self):
         return self.title

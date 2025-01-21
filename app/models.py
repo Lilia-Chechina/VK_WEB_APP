@@ -1,16 +1,29 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.conf import settings
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
+# в PostgreSQL все названия таблиц в строчных буквах в стиле app_profile
+
+# post_save для связи между user и Profile, чтобы при создании Profile создавался и user
 class Profile(models.Model):
-    email = models.EmailField(unique=True)
-    nickname = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, default='avatars/default.jpg')
     # будет сохраняться в папке avatar
 
     def __str__(self):
-        return self.nickname # может возвращать с f-строкой
-    # тут бы по-хорошему нормально всё возвращать
+        return self.user.username
 
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -24,6 +37,9 @@ class QuestionManager(models.Manager):
 
     def new_questions(self):
         return self.order_by('-created')
+
+    def by_tag(self, tag_name):
+        return self.filter(tags__name=tag_name).order_by('-created')
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
@@ -43,6 +59,9 @@ class Question(models.Model):
     score = models.IntegerField(default=0)  # Счётчик голосов
     is_correct = models.BooleanField(default=False)
     objects = QuestionManager()  # для лучших и новых вопросов
+
+    def get_absolute_url(self):
+        return reverse('question_detail', kwargs={'pk': self.id})
 
     def __str__(self):
         return self.title
@@ -77,3 +96,24 @@ class BestMember(models.Model):
 
     def __str__(self):
         return self.member.nickname
+
+class QuestionLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='question_likes') # все лайки пользователя
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='likes')  # все лайки вопроса
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:  # для добавления ограничений
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'question'], name='unique_question_like')  #  один и тот же
+            # пользователь (user) не может поставить лайк на один и тот же вопрос (question) дважды.
+        ]
+
+class AnswerLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answer_likes')
+    answer = models.ForeignKey('Answer', on_delete=models.CASCADE, related_name='likes')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'answer'], name='unique_answer_like')
+        ]

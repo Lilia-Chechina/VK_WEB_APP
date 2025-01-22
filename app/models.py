@@ -101,6 +101,7 @@ class QuestionLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='question_likes') # все лайки пользователя
     question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='likes')  # все лайки вопроса
     created = models.DateTimeField(auto_now_add=True)
+    value = models.SmallIntegerField(default=0)
 
     class Meta:  # для добавления ограничений
         constraints = [
@@ -112,6 +113,7 @@ class AnswerLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answer_likes')
     answer = models.ForeignKey('Answer', on_delete=models.CASCADE, related_name='likes')
     created = models.DateTimeField(auto_now_add=True)
+    value = models.SmallIntegerField(default=0)
 
     class Meta:
         constraints = [

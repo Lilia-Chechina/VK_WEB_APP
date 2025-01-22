@@ -1,17 +1,54 @@
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
-from .models import Question, Tag
 from .utils import paginate_queryset
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import LoginForm
+from .models import Tag
 
-def index(request):
-    questions = Question.objects.new_questions()
-    page_number = request.GET.get('page', 1)
-    questions_paginated, paginator = paginate_queryset(questions, page_number, 10)
+def log_in(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(request, **form.cleaned_data)
+            if user:
+                auth_login(request, user)
+                next_url = request.GET.get('next')
+                if next_url:
+                    return redirect(next_url)
+                return redirect('index')
+            else:
+                form.add_error(None, "Wrong login or password!")
+    else:
+        form = LoginForm()
 
-    return render(request, 'index.html', {
-        'questions': questions_paginated,
-        'paginator': paginator,
-    })
+    context = {
+        "content_title": "Login",
+        "form": form,
+        "popular_tags": Tag.objects.get_popular(),  # Предположим, что вы создали метод get_popular() в модели Tag
+        # "popular_users": BestMember.objects.all().order_by('-total_score')[:5]  # Пример с популярными пользователями
+    }
+    return render(request, 'login.html', context)
+
+
+# def logout(request):
+#     next_page = request.META.get('HTTP_REFERER', None)  # Получаем предыдущий URL
+#     auth_logout(request)
+#
+#     if next_page:
+#         return redirect(next_page)  # Если была страница, с которой пришел пользователь, возвращаем его на неё
+#     return redirect('index')  # Если нет — на главную страницу
+#
+# def index(request):
+#     questions = Question.objects.new_questions()
+#     page_number = request.GET.get('page', 1)
+#     questions_paginated, paginator = paginate_queryset(questions, page_number, 10)
+#
+#     return render(request, 'index.html', {
+#         'questions': questions_paginated,
+#         'paginator': paginator,
+#     })
 
 # Это из ТЗ 2 вк имитация БД
 # QUESTIONS = [
